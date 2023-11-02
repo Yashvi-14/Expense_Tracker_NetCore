@@ -1,0 +1,51 @@
+﻿@model Expense_Tracker.Models.Categories
+
+@{
+    ViewData["Title"] = Model.CategoryId == 0 ? "Create a new category" : "Edit category";
+}
+<link rel="stylesheet" href="../wwwroot/css/Create.css" />
+<link href="https://cdn.syncfusion.com/ej2/23.1.36/bootstrap5-dark.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5" style="background-color:#212b36">
+            <form asp-action="AddorEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+                <div class="mb-3">
+                    <div class='e-btn-group custom-rbt-group'>
+                        <input type="radio" id="radioleft" name="Type" value="Expense" checked="@(Model.Type=="Expense")" />
+                        <label class="e-btn" for="radioleft">Expense</label>
+                        <input type="radio" id="radiomiddle" name="Type" value="Income" checked="@(Model.Type=="Income")" />
+                        <label class="e-btn" for="radiomiddle">Income</label>
+
+                    </div>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <ejs-textbox id="title" placeholder="Title" ejs-for="Title" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <ejs-textbox id="Icon" placeholder="Icon" ejs-for="Icon" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Icon" class="text-danger"></span>
+                </div>
+                <ejs-button id="submit" content="submit" type="submit" cssClass="e-success"></ejs-button>
+
+            </form>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-shapes fa-2xl"></i>
+        </div>
+    </div>
+</div>
+    </div>
+  @*  <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
